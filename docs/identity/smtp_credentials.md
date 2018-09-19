@@ -13,7 +13,9 @@ The following attributes are exported:
 * `time_created` - Date and time the `SmtpCredential` object was created, in the format defined by RFC3339.  Example: `2016-08-25T21:10:29.600Z` 
 * `time_expires` - Date and time when this credential will expire, in the format defined by RFC3339. Null if it never expires.  Example: `2016-08-25T21:10:29.600Z` 
 * `user_id` - The OCID of the user the SMTP credential belongs to.
-* `username` - The SMTP user name. 
+* `username` - The SMTP user name.
+* `password` - The SMTP password.
+
 
 
 
@@ -48,6 +50,10 @@ resource "oci_identity_smtp_credential" "test_smtp_credential" {
 	#Required
 	description = "${var.smtp_credential_description}"
 	user_id = "${oci_identity_user.test_user.id}"
+}
+
+output "SMTP Credentials are as following:"{
+value = ["\n\tThe OCID of the SMTP credential - ${oci_identity_smtp_credential.test_smtp_credential.id}\n\tThe SMTP password - ${oci_identity_smtp_credential.test_smtp_credential.password}\n"]
 }
 ```
 
