@@ -38,6 +38,7 @@ resource "null_resource" "mount_fss_on_instance" {
       "sudo yum -y install nfs-utils > nfs-utils-install.log",
       "sudo mkdir -p /mnt/myfsspaths/fs1/path1",
       "sudo mount ${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1}",
+      "echo \"${local.mount_target_1_ip_address}:${var.export_path_fs1_mt1} /mnt${var.export_path_fs1_mt1} nfs defaults,nofail,nosuid,resvport 0 0\"|sudo tee -a /etc/fstab",
     ]
   }
 }
